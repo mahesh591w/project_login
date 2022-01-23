@@ -28,6 +28,20 @@ label {
 			
 		
 		}
+		
+		stage ('COPY_WAR_TO_Server'){
+		
+				steps {
+						withCredentials([usernamePassword(credentialsId: 'saccount', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+						sh "scp -r '$USERNAME:$PASSWORD'@10.0.2.51:/data/project/wars"
+
+						}
+				
+				}
+		
+		
+		
+		}
 	
 	
 	
