@@ -32,8 +32,8 @@ label {
 		stage ('COPY_WAR_TO_Server'){
 		
 				steps {
-						withCredentials([usernamePassword(credentialsId: 'saccount', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-						sh "scp -r target/LoginWebApp.war '$USERNAME:$PASSWORD'@10.0.2.51:/data/project/wars"
+						
+						sh "scp -r target/LoginWebApp.war saccount@10.0.2.51:/data/project/wars"
 
 						}
 				
