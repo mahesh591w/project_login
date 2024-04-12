@@ -20,15 +20,15 @@ pipeline {
 				stage ('build-war-file') {
 								
 								steps {
-								
-										sh "mvn clean install"
+										sh "sudo cd /mnt/project/project_login"
+										sh "sudo mvn clean install"
 								}
 				}
 				stage ('deploy-war-on-newMachine') {
 				
 								steps {
 								
-										sh "scp -o StrictHostKeyChecking=no -i /mnt/New-aws.pem /mnt/project/project_login/target/LoginWebApp.war ec2-user@172.31.39.21:/mnt/sever/apache-tomcat-9.0.87/webapps"
+										sh "sudo scp -o StrictHostKeyChecking=no -i /mnt/New-aws.pem /mnt/project/project_login/target/LoginWebApp.war ec2-user@172.31.39.21:/mnt/sever/apache-tomcat-9.0.87/webapps"
 										
 								}
 				}
