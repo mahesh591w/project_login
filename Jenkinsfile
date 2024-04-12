@@ -21,7 +21,7 @@ pipeline {
 								
 								steps {
 										sh "sudo cd /mnt/project/project_login"
-										sh "sudo mvn clean install"
+										sh "mvn clean install"
 								}
 				}
 				stage ('deploy-war-on-newMachine') {
