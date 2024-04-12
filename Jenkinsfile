@@ -20,7 +20,7 @@ pipeline {
 				stage ('build-war-file') {
 								
 								steps {
-										sh "sudo cd /mnt/project/project_login"
+										
 										sh "mvn clean install"
 								}
 				}
