@@ -14,6 +14,7 @@ pipeline {
 										sh "rm -rf *"
 										sh "rm -rf /root/.m2/repository"
 										sh "sudo git clone https://github.com/mahesh591w/project_login.git"
+										sh "sudo cd /mnt/project/project_login"
 										
 								}
 				}
