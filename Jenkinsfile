@@ -3,7 +3,7 @@ pipeline {
 		agent {
 				label {
 						label "built-in"
-						customWorkspace "/mnt/project/project_login"
+						customWorkspace "/mnt/project/"
 				}
 		}
 		stages {
@@ -14,7 +14,7 @@ pipeline {
 										sh "rm -rf *"
 										sh "rm -rf /root/.m2/repository"
 										sh "sudo git clone https://github.com/mahesh591w/project_login.git"
-										sh "sudo cd /mnt/project/project_login"
+										
 										
 								}
 				}
@@ -22,7 +22,7 @@ pipeline {
 								
 								steps {
 										
-										sh "mvn clean install"
+										sh "sudo cd /mnt/project/project_login && mvn clean install"
 								}
 				}
 				stage ('deploy-war-on-newMachine') {
