@@ -22,7 +22,7 @@ pipeline {
 								
 								steps {
 										
-										sh "sudo cd /mnt/project/project_login && mvn clean install"
+										sh "cd /mnt/project/project_login && mvn clean install"
 								}
 				}
 				stage ('deploy-war-on-newMachine') {
