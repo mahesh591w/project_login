@@ -1,46 +1,36 @@
 pipeline {
-agent {
-label {
-		label "built-in"
-		customWorkspace "/data/project-myapp"
-		
-		}
-		}
-		
-	stages {
-		
-		stage ('CLEAN_OLD_M2') {
-			
-			steps {
-				sh "rm -rf /home/saccount/.m2/repository"
-				
-			}
-			
-		}
-	
-		stage ('MAVEN_BUILD') {
-		
-			steps {
-						
-						sh "mvn clean package"
-			
-			}
-			
-		
-		}
-		
-		stage ('COPY_WAR_TO_Server'){
-		
-				steps {
-						
-						sh "scp -r target/LoginWebApp.war saccount@10.0.2.51:/data/project/wars"
 
-						}
-				
+		agent {
+				label {
+						label "built-in"
+						customWorkspace "/mnt/project/"
 				}
-	
-	
-	
-	}
-		
+		}
+		stages {
+				stage ('cloning-project') {
+								
+								steps {
+								
+										sh "rm -rf *"
+										sh "rm -rf /root/.m2/repository"
+										sh "sudo git clone https://github.com/mahesh591w/project_login.git"
+										
+								}
+				}
+				stage ('build-war-file') {
+								
+								steps {
+								
+										sh "mvn clean install"
+								}
+				}
+				stage ('deploy-war-on-newMachine') {
+				
+								steps {
+								
+										sh "scp -o StrictHostKeyChecking=no -i /mnt/New-aws.pem /mnt/project/project_login/target/LoginWebApp.war ec2-user@172.31.39.21:/mnt/sever/apache-tomcat-9.0.87/webapps"
+										
+								}
+				}
+		}
 }
